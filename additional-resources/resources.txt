@@ -1,0 +1,67 @@
+--- Publications ---
+Riemer, E. «A revised keyboard for the typewriter». Master’s thesis, New York University, 1929 (referenced in Typewriting Behaviour, p. 212)
+Bramesfield, E. «Untersuchung des Anschlags an der Schreibmaschine», Industrielle Psychotechnik vol 7, pp. 226-227, 1929  (referenced in Typewriting Behaviour, p. 232)
+Coover, J.E. «A method of teaching typewriting based on psychological analysis of expert typing», p. 561-567, Proceedings National Education Association, 1933  (referenced in Typewriting Behaviour, p. 324)
+Klockenberg, E.A. «Rationalisierung der Schreibmaschine und ihrer Bedienung», p. 87, Julius Springer, 1926  (referenced in Typewriting Behaviour, p. 323)
+
+--- Links ---
+http://discovermagazine.com/1997/apr/thecurseofqwerty1099
+https://workmanlayout.org/
+http://shenafu.com/smf/index.php?topic=89.0
+https://colemakmods.github.io/mod-dh/analyze.html
+http://www.minimak.org/
+https://www.romanzolotarev.com/typing.html
+http://shenafu.com/code/keyboard/klatest/#/main
+https://github.com/patorjk/keyboard-layout-analyzer
+http://patorjk.com/keyboard-layout-analyzer/#/main
+http://mkweb.bcgsc.ca/carpalx/
+https://normanlayout.info/
+https://svetovalnica.zrc-sazu.si/uploads/files/1475232122598-seznam_besed_po_pogostosti_rabe.pdf
+https://colemakmods.github.io/mod-dh/
+http://mkweb.bcgsc.ca/carpalx/
+http://mkweb.bcgsc.ca/carpalx/?typing_effort
+https://svetovalnica.zrc-sazu.si/topic/1322/seznam-najpogosteje-rabljenih-besed-v-sloven%C5%A1%C4%8Dini
+https://en.wikipedia.org/wiki/Colemak
+https://help.ubuntu.com/community/Custom%20keyboard%20layout%20definitions
+https://en.wikipedia.org/wiki/Computer_keyboard
+https://en.wikipedia.org/wiki/Dvorak_Simplified_Keyboard
+http://discovermagazine.com/1997/apr/thecurseofqwerty1099
+https://patents.google.com/patent/US7251367B2/en
+https://workmanlayout.org/
+http://shenafu.com/smf/index.php?topic=89.0
+https://colemakmods.github.io/mod-dh/analyze.html
+http://www.minimak.org/
+https://www.romanzolotarev.com/typing.html
+https://www.kaufmann.no/roland/dvorak/
+http://patorjk.com/keyboard-layout-analyzer/v2/
+http://shenafu.com/code/keyboard/klatest/#/main
+https://github.com/patorjk/keyboard-layout-analyzer
+http://patorjk.com/keyboard-layout-analyzer/#/main
+http://mkweb.bcgsc.ca/carpalx/
+https://normanlayout.info/
+https://medium.com/@damko/a-simple-humble-but-comprehensive-guide-to-xkb-for-linux-6f1ad5e13450
+https://askubuntu.com/questions/482678/how-to-add-a-new-keyboard-layout-custom-keyboard-layout-definition
+https://askubuntu.com/questions/510024/what-are-the-steps-needed-to-create-new-keyboard-layout-on-ubuntu
+https://github.com/simos/keyboardlayouteditor
+http://bepo.fr/wiki/Accueil
+https://archive.org/details/in.ernet.dli.2015.74878/page/n7
+http://dvorak.mwbrooks.com/
+http://dvorak.mwbrooks.com/national.html
+http://discovermagazine.com/1997/apr/thecurseofqwerty1099/
+https://svetovalnica.zrc-sazu.si/uploads/files/1475232122598-seznam_besed_po_pogostosti_rabe.pdf
+https://www.clarin.si/noske/index.html
+
+Programmer Dvorak https://www.kaufmann.no/roland/dvorak/
+Layout Editor http://www.keyboard-layout-editor.com/##@@=Esc&_x:1%3B&=F1&=F2&=F3&=F4&_x:0.5%3B&=F5&=F6&=F7&=F8&_x:0.5%3B&=F9&=F10&=F11&=F12&_x:0.25%3B&=PrtSc&=Scroll%20Lock&=Pause%0ABreak%3B&@_y:0.5&fa@:1%3B%3B&=~%0A%60&_a:7%3B&=&_a:4&f:3%3B&=%5B%0A1&_f:3%3B&=%7B%0A2&_f:3%3B&=%7D%0A3&=%0A4&=%0A5&=%0A6&=%0A7&=%0A8&_f:3%3B&=%5D%0A9&_f:3%3B&=%3F%0A0&_f:3%3B&=%60%0A%23&_f:3&w:2%3B&=Backspace&_x:0.25&f:3%3B&=Insert&_f:3%3B&=Home&_f:3%3B&=PgUp&_x:0.25&f:3%3B&=Num%20Lock&_f:3%3B&=%2F%2F&_f:3%3B&=*&_f:3%3B&=-%3B&@_f:3&w:1.5%3B&=Tab&_f:3%3B&=%2F:%0A%2F%3B&_f:3%3B&=.%0A,&_f:3%3B&=L&_f:3%3B&=P&_f:3%3B&=%C5%A0&_f:3%3B&=F&_f:3%3B&=G&_f:3%3B&=C&_f:3%3B&=R&_f:3%3B&=.%0A%3E&_f:3%3B&=Y%0A%3F&_f:3%3B&=X&_x:0.25&f:3&w:1.25&h:2&w2:1.5&h2:1&x2:-0.25%3B&=Enter&_x:0.25&f:3%3B&=Delete&_f:3%3B&=End&_f:3%3B&=PgDn&_x:0.25&f:3%3B&=7%0AHome&_f:3%3B&=8%0A%E2%86%91&_f:3%3B&=9%0APgUp&_f:3&h:2%3B&=+%3B&@_f:3&w:1.75%3B&=Backspace%0A(CAPS%20LOCK)&_f:3%3B&=A&_f:3%3B&=U&_f:3%3B&=E&_f:3%3B&=O&_f:3%3B&=I&_f:3%3B&=D&_f:3%3B&=H&_f:3%3B&=T&_f:3%3B&=N&_f:3%3B&=%C4%8C%0AS&_f:3%3B&=%C4%86%0A%3C&_f:3%3B&=%C5%BD%0A%3E&_x:4.75&f:3%3B&=4%0A%E2%86%90&_f:3%3B&=5&_f:3%3B&=6%0A%E2%86%92%3B&@_f:3&w:1.25%3B&=Shift&_a:7%3B&=&_a:4&f:3%3B&=%22%0A'&_f:3%3B&=Q&_f:3%3B&=J&_f:3%3B&=K&_f:3%3B&=%C4%90&_f:3%3B&=B&_f:3%3B&=M%0A%7C&_f:3%3B&=W%0A,&_f:3%3B&=V%0A.&_f:3%3B&=Z&_f:3&w:2.75%3B&=Shift&_x:1.25&f:3%3B&=%E2%86%91&_x:1.25&f:3%3B&=1%0AEnd&_f:3%3B&=2%0A%E2%86%93&_f:3%3B&=3%0APgDn&_f:3&h:2%3B&=Enter%3B&@_f:3&w:1.25%3B&=Ctrl&_f:3&w:1.25%3B&=Win&_f:3&w:1.25%3B&=Alt&_a:7&w:6.25%3B&=&_a:4&f:3&w:1.25%3B&=AltGr&_f:3&w:1.25%3B&=Win&_f:3&w:1.25%3B&=Menu&_f:3&w:1.25%3B&=Ctrl&_x:0.25&f:3%3B&=%E2%86%90&_f:3%3B&=%E2%86%93&_f:3%3B&=%E2%86%92&_x:0.25&f:3&w:2%3B&=0%0AIns&_f:3%3B&=.%0ADel
+Keyboard Layout Analyzer http://patorjk.com/keyboard-layout-analyzer/v2/
+
+--- Carpalx ---
+martin.krzywinski@gmail.com
+
+https://www.smithsonianmag.com/arts-culture/fact-of-fiction-the-legend-of-the-qwerty-keyboard-49863249/
+https://viralintrospection.wordpress.com/2010/09/06/a-different-philosophy-in-designing-keyboard-layouts/
+http://mkweb.bcgsc.ca/carpalx/?keyboard_evaluation
+http://mkweb.bcgsc.ca/carpalx/?typing_effort#successful_typing_model_characteristics
+
+--- Misc ---
+/usr/share/X11/xkb/symbols - keyboard definitions

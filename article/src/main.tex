@@ -1,0 +1,90 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{subfiles}
+\usepackage[left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{blindtext}
+
+\renewcommand{\contentsname}{Kazalo}
+\renewcommand{\figurename}{Slika}
+\renewcommand{\listfigurename}{Kazalo slik}
+\renewcommand{\refname}{Literatura in viri}
+
+\begin{document}
+
+    \begin{titlepage}
+        \begin{center}
+            \includegraphics[width=1\linewidth]{resources/logo-vegova.jpg} \\
+            \vfill
+            \huge{PROGRAMSKE REALIZACIJE APARATURNIH GRADNIKOV} \\
+            \huge{Prilagajanje Dvorak tipkovnice za slovenščino}
+            \vfill
+        \end{center}
+        \vfill
+        \noindent
+        \begin{flushright}
+            Avtor: Erazem Kokot \\
+        \end{flushright}
+        \begin{raggedleft}
+            Ljubljana, Marec 2018 \hfill Mentor: Aleš Volčini
+        \end{raggedleft}
+    \end{titlepage}
+
+    % Povzetek
+    \section*{Povzetek}\label{sec:povzetek}
+    \subfile{sections/povzetek}
+    \newpage
+
+    % Kazalo
+    \tableofcontents
+    \newpage
+
+    % Kazalo slik
+    \listoffigures
+    \newpage
+
+    \section{Uvod}\label{sec:uvod}
+    \subfile{sections/uvod}
+    \newpage
+
+    \section{Osnovni pojmi}\label{sec:pojmi}
+    \subfile{sections/pojmi}
+    \newpage
+
+    \section{Zgodovina tipkovnic}\label{sec:zgodovina}
+    \subfile{sections/zgodovina}
+    \newpage
+
+    \section{Postavitve tipkovnic}\label{sec:postavitve-tipkovnic}
+    \subfile{sections/postavitve-tipkovnic}
+    \newpage
+
+    \section{Dvorak tipkovnica}\label{sec:dvorak}
+    \subfile{sections/dvorak}
+    \newpage
+
+    \section{Delovanje tipkovnic}\label{sec:delovanje}
+    \subfile{sections/delovanje}
+    \newpage
+
+    \section{Prilagajanje postavitve za slovenščino}\label{sec:prilagajanje}
+    \subfile{sections/prilagajanje}
+    \newpage
+
+    \section{Možnosti za razširitev in nadaljni razvoj}\label{sec:razsiritev}
+    \subfile{sections/razsiritev}
+    \newpage
+
+    \section{Zaključek}\label{sec:zakljucek}
+    \subfile{sections/zakljucek}
+    \newpage
+
+    % Viri (brez naslova)
+    \subfile{sections/viri}
+    \newpage
+
+\end{document}

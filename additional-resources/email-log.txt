@@ -1,0 +1,188 @@
+-----
+Info:
+-----
+Erazem Kokot <erazem@erazem.eu>
+Roland Kaufmann <programmer.dvorak@gmail.com>
+
+
+-----------------------------------------
+Erazem > Roland (Mon, 22 Oct 2018, 07:29)
+-----------------------------------------
+
+Dear Sir or Madam,
+
+I am trying to create a Slovenian keyboard layout, inspired by the Programmer Dvorak keyboard for my seminar work. I would like to know your process for studying the most optimal layout of letters/symbols so I can try applying the same process for the Slovenian language.
+
+Your feedback is very much appreciated.
+
+Best regards,
+Erazem
+
+
+-----------------------------------------
+Roland > Erazem (Mon, 22 Oct 2018, 11:06)
+-----------------------------------------
+
+On 22. Oct. 2018 at 07:29, Erazem Kokot wrote:
+
+    I am trying to create a Slovenian keyboard layout ... for my seminar work
+
+
+That sounds quite exciting! (If you're into these things, at least
+:-)) What school/course is this for, if I may ask out of curiosity?
+
+    I would like to know your process for studying the most optimal layout of letters/symbols so I can try applying the same process for the Slovenian language.
+
+
+My layout is simply a result of the realization that most of my
+programming is done in the English language; comments, documentation,
+naming of variables etc., but with some particular usage of symbols on
+top of that. Thus, I took the Dvorak layout as base, and changed only
+the placement of the symbols, which is actually hardly mentioned in
+the original Dvorak layout, only added by some committee, whose
+reasoning is unknown, afterwards. None of the ordinary characters have
+been moved in my layout, based on the fact that I still, even when
+programming, use them much more than the symbols.
+
+The principles for the placement of symbols follow the same process as
+for the main characters, though: I want to have
+(*) good alternation between left and right hand; examples
+-> end-{bracket,parenthesis}+semicolon
+-> pair of parenthesis
+(*) good "roll" inwards and out for digrams; examples:
+-> pair of brackets
+-> end-bracket+{plus, minus}
+(*) more used symbols on stronger fingers; examples:
+-> parenthesis on index finger
+-> ampersand on left pinky finger
+
+The full description of these is of course in August Dvorak's
+Typewriting Behaviour, which may be available at:
+
+<https://www.secure.thisistrue.com/product/typewriting-behavior>
+
+However, this is old and somewhat hard to get through. A nice summary
+which is also a lot easier to read is available in Randy Cassingham's
+book about Dvorak, which unfortunately is out of print as well, but
+there may still be some left on the Internet:
+
+<https://www.abebooks.com/servlet/SearchResults?isbn=978-0-935309-10-2>
+
+BUT, and this is a large but; if you are going to create one for the
+Slovene language, then beware that the Dvorak layout is intrinsically
+coupled to the English language, and will not perform as well in other
+languages, due to the idiosyncratic history of English. There is
+enough Celtic and Roman in there so that though English is considered
+a Germanic language, even for my native language, Norwegian, also a
+descendant of Norse, the Dvorak keyboard performs just on par with
+Qwerty.
+
+Slovene is a slavic language, with different phonemes than the
+Germanic languages, so I would reckon that you would end up with quite
+a different keyboard if you were trying to optimize for it. Just
+confer with Bépo, a keyboard layout written for Roman languages, most
+notably French:
+
+<http://bepo.fr/wiki/Accueil>
+
+how different this is from Dvorak, although English has quite an
+amount of loan-words from French (so much that I would not rule out
+that by the amount of characters, it is just as much a Roman language
+as a Germanic one; the Germanic base words are typically shorter).
+
+I will try to dig up some links to sites that have written programs to
+do such an optimization for a full layout; however I have quite some
+work to do at the time; please send me a remainder if you don't hear
+from me within a week!
+
+-- 
+Roland.
+
+
+-----------------------------------------
+Erazem > Roland (Mon, 22 Oct 2018, 16:23)
+-----------------------------------------
+
+Thank you so much for your quick reply.
+
+I am a student at Vegova Ljubljana, a high school mostly for computer engineering and electronics engineering, so my seminar work will be at least partially connected to my study.
+
+Regarding the programs to calculate placement efficiency, I have found one, Patojrk's Keyboard Layout Analyzer (I'm typing this on a phone so I can't hyperlink), but it doesn't support Slovenian characters, but luckily it is open source so I can try and modify it. All your contributions regarding links are still very much appreciated though.
+
+And thank you for your explanation, I think following your method of choosing depending on your experience should work perfectly for me as well.
+
+Hoping to hear from you soon and good luck with your work.
+
+Best regards,
+Erazem
+
+
+-----------------------------------------
+Roland > Erazem (Wed, 14 Nov 2018, 21:12)
+-----------------------------------------
+
+I'll write this up on my webpage one day, but since you probably need it sooner for your seminar work, here goes:
+
+To create a new keyboard layout, you'll need three things:
+
+(1) Conditional Frequency Table
+
+This is a matrix D having dimensions n*n, where n is the number of characters in the alphabet, and some punctuation, e.g. A-Z , . ? ! ' ". Each entry in this matrix is P(B|A), which is the probability that character B follows character A.
+
+This kind of matrix is much used within cryptography, see [1-3] for examples. However, they are closely tied to the language you are targeting; the links referred to above are for English. You will need some for Slovene.
+
+It would be a nice project in itself to connect to some literary department at your university (or nearby if you are in the capital), to scan through some "corpus" of text that officially is considered representative literature, and write a program that create these tables. I think that would be publishable.
+
+Tables with two dimensions are called digraphs. You can also create trigraphs, analyzing every sequence of three characters in a row, but I think the gain from such an effort is marginal, and it increase the problem (later) significantly.
+
+(2) Cost Table
+
+This is model C, having dimensions n*n, where n is the number of keys on the keyboard. Each entry is C(Y|X), which is the effort of pressing key Y, if you last pressed X.
+
+Unfortunately, I don't think you can find August Dvorak's notes in this area publicly available, and the "Typewriting Behaviour" book is very scant on actual data. He does reproduce some tables from other literature; I have put some of the applicable ones into a spreadsheet and attached here. I think you will have a hard time hunting down the originals, though.
+
+A nice project would be to write a program that let you write some text, and then time how long it takes between each key. If you can get some fellow students to use this and write some text for a while, you can get some data. I think that would be publishable as well.
+
+Notice that the cost function will probably be biased by the frequency for the language used to do the sampling, but this learning effect is hard to adjust for. Ideally we should have sampling from both people who write Qwerty and who write Dvorak.
+
+(3) Assignment
+
+The keyboard layout is now an assignment matrix P, also with dimensions n*n, where n is both the number of characters and the number of keys (because it is one-on-one). Each entry describes whether key X gives character A. Each row and each column has exactly one entry which is 1, all other is 0.
+
+(4) Optimization
+
+The problem can now be formulated as: Find the assignment P, such that the weighted cost sum((D * P) o C) is minimal.
+
+Doing one evaluation is quick. You don't have to scan through a lot of text if you have the statistics tables. However, there are a lot of combinations to wade through if you try to do this brute force. With the 26 characters and 6 symbols above, and the top, main and bottom rows on a standard keyboard, you have 32! = 263 decillion combinations. Thus, you will need to adapt some optimization algorithm to the problem above, see for instance [4-5] for earlier attempts.
+
+(5) Common pitfalls
+
+Here is a rundown of some of the mistakes I see on the Internet when people try to design their own keyboard layout:
+
+(5a) Insufficient corpus
+
+They use a conditional frequency table based on just a small set of text, which is not really representative of the text that you will write afterwards.
+
+(5b) Pet peeve assignment
+
+This is a variant of the one above: They design in particular, assumed beneficial combinations, without having any statistics to back it up.
+
+(5c) Wrong cost function
+
+The most common of these is to calculate the cost of a movement as the simple distance that a finger has to move. But if you look at the tables in the spreadsheet I've attached, you can see that there is more to it than that.
+
+
+Good luck, I hope some of this is useful to you.
+
+-- 
+Roland.
+
+[1] <http://jnicholl.org/Cryptanalysis/Data/DigramFrequencies.php>
+
+[2] <https://www.cryptograms.org/letter-frequencies.php>
+
+[3] <https://pi.math.cornell.edu/~mec/2003-2004/cryptography/subs/digraphs.html>
+
+[4] <https://www.researchgate.net/publication/242362941_Performance_Optimization_of_Virtual_Keyboards>
+
+[5] <https://www.sciencedirect.com/science/article/pii/S0169814115000657>

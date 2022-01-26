@@ -1,0 +1,231 @@
+\begin{document}
+
+    \subsection{Načela odločanja}\label{subsec:načela-odločanja}
+
+    Svojo postavitev tipkovnice sem naredil na podlagi načel, ki jih je postavil August Dvorak v svoji raziskavi
+    in na podlagi predlogov dveh izdelovalcev postavitev tipkovnic, Martina Krzywinskija,
+    programerja Carpalx programa in Rolanda Kaufmanna, ki je ustvaril Programersko Dvorak postavitev.
+    Načela so sledeča \cite{roland_mail}:
+
+    \begin{itemize}
+        \item alteracija med rokama mora biti čim bolj pogosta,
+        \item desna roka je pri večini ljudi močnejša, zato naj opravi več dela,
+        \item večina tipkanja naj se opravi na srednji (domači) vrstici,
+        \item najpogostejše uporabljene črke in kombinacije dveh črk naj bodo na desni strani srednje vrstice,
+        \item najredkejše uporabljene črke naj bodo na spodnji vrstici.
+    \end{itemize}
+
+    \subsection{Postopek izdelave postavitve}\label{subsec:postopek-izdelave-postavitve}
+
+    Za ugotavljanje najbolše postavitve sem se odločil uporabiti program Carpalx,
+    saj kljub razmeroma preprosti uporabi omogoča spreminjanje nastavitev,
+    s pomočjo tako imenovanih uteži (ang. \emph{weights}) in "kazni" (ang. \emph{penalties}) za pritisk tipk z različnimi prsti.
+
+    Program je napisan v programskem jeziku Perl in je na voljo za več operacijskih sistemov.
+    Optimalno postavitev tipkovnice program najde tako, da pregleda vnešeno postavitev tipk,
+    prebere korpus iz tekstovne datoteke (sklop besedila) in nato pri računanju doda uteži in kazni \cite{typing_effort}.
+    Program izračuna težavnost za vnešeno postavitev, nato zamenja mesti dveh črk in ponovi izračun.
+    Po določenem številu zamenjav program izpiše postavitev z najmanjšo težavnostjo,
+    ki je torej optimizirana glede na podano postavitev, korpus izbranega besedila in določene dodatne nastavitve.
+
+    \subsubsection{Težavnostni model}
+
+    Program Carpalx uporablja tako imenovan težavnostni model oz. model vloženega napora (ang. \emph{typing effort model}), ki izračuna napor pri uporabi posamezne postavitve.
+    Glede na podan korpus ima vsaka postavitev izračunano določeno težavnost oz. vloženi napor, nato pa program z večimi poskusi najde postavitev z najmanjšo težavnostjo in jo izbere kot optimalno.
+    Program omogoča, da uporabnik določi parametre težavnosti in s tem izračuna katera postavitev je subjektivno najboljša.
+    Ta način izračuna je zelo uporaben, saj vsak uporabnik tipka na drugačen način, program pa pomaga tudi uporabnikom z določenimi nezmožnostmi,
+    kot so poškodovani ali manjkajoči prsti, bolečine v rokah ob določenih gibih itd. \\
+
+    Težavnostni model temelji na branju trojic (ang. \emph{triads}), tj. zaporedju treh črk iz besedila.
+    Nato model preveri razdaljo med tipkami, ki jo morajo opraviti prsti, prišteje vnaprej določene kazni in uteži in pregleda obliko poti,
+    ki jo opravijo prsti (ali so gibi roke enostavno izvedljivi ali zapleteni).
+    Težavnost je nato izračunana za posamezno tipko in za skupino zaporednih tipk.
+    Pri posamezni tipki je težavnost izračunana predvsem glede na razdaljo med zaporednima pritiskoma, k temu pa so prištete uteži in kazni.
+    Pri skupini tipk na težavnost vpliva oblika poti, ki pove kako zapletene gibe mora narediti roka, da doseže zaporedje teh tipk.
+
+    \subsubsection{Trojice}
+
+    Program omogoča nastavitev prekrivanja trojic, koncept, ki je prikazan na primeru spodaj.
+    Besedo "abeceda" lahko razstavimo na naslednje trojice
+
+    \begin{verbatim}
+        abeceda
+
+        abe-
+        -bec-
+         -ece-
+          -ced-
+           -eda
+    \end{verbatim}
+
+    Na tem primeru lahko vidimo, da se prekrivata po dve črki, kar je privzeta nastavitev programa.
+    Težavnost je nato izračunana kot povprečje seštevka težavnosti za posamične trojice: \\
+
+    $E = \frac{1}{N} \displaystyle\sum_{i} e_{i} = \frac{1}{N} \displaystyle\sum_{i, i \neq j \implies e_{i} \neq e_{j}} n_{i} e_{i}$ \\
+
+    kjer je $N$ število vseh trojic, $t_{i}$ je težavnost tipkanja trojice $i$.
+    Število unikatnih trojic je omejeno, zato je najbolj učinkovito narediti indeks vseh trojic in nato sešteti število ponovitev ($n_{i}$).
+    Težavnost vsake posamične trojice se izračuna po formuli: \\
+
+    $e_{i} = k_{b} b_{i} + k_{p} p_{i} + k_{s} s_{i}$ \\
+
+    kjer so $b_{i}$, $p_{i}$ in $s_{i}$ izračuni osnove, kazni in oblike poti za trojico $i$.
+    Osnovo in kazen izračunamo po formulah: \\
+
+    $b_{i} = k_{1} b_{i1} (1 + k_{2} b_{i2} (1 + k_{3} b_{i3}))$
+
+    $p_{i} = k_{1} p_{i1} (1 + k_{2} p_{i2} (1 + k_{3} p_{i3}))$
+
+    \subsection{Analiza postavitve}\label{subsec:analiza-postavitve}
+
+    Analiza temelji na izračunu pogostosti uporabe vrstic, prstov, rok in preskokov vrstic:
+
+    \begin{itemize}
+        \item vrstica - pogostost tipkanja na zgornji ($row_{t}$), srednji ($row_{h}$) in spodnji ($row_{b}$) vrstici,
+        \item roka - pogostost tipkanja z levo ($h_{L}$) in desno ($h_{R}$) roko,
+        \item prsti - pogostost tipkanja z določenim prstom ($f_{0}$ - $f_{9}$),
+        \item menjava rok - definirana z $h_{L} - h_{R}$, kjer imajo optimizirane postavitve nizko število,
+        \item preskok vrstic - število preskokov znotraj trojice, npr. trojica "edc" ima preskok dveh vrstic, saj se s prstom premaknemo iz najvišje vrstice eno vrstico nižje, nato pa še na najnižjo vrstico.
+    \end{itemize}
+
+\newpage
+    \subsubsection{Šumniki}\label{sumniki}
+
+    Ker program ne podpira šumnikov, imamo možnost, da jih pri analizi zamenjamo z drugimi znaki, ki jih najdemo na ASCII tabeli.
+    V izbranem korpusu so bili zamenjani naslednji šumniki:
+
+    \begin{verbatim}
+        č => \
+        š => @
+        ž => |
+        đ => [
+        ć => ]
+    \end{verbatim}
+
+    Čeprav črki đ in ć nista del slovenske abecede sem ju vključil v analizo, saj sta vseeno prisotni na slovenski tipkovnici.
+
+    \subsubsection{Računanje težavnosti obstoječe postavitve}
+
+    Da bi vedeli, če je naša postavitev res optimizirana, jo moramo primerjati z že obstoječo postavitvijo.
+    Za moj namen sem izbral slovensko QWERTZ postavitev.
+    Program Carpalx prebere postavitev izbrane tipkovnice iz svoje konfiguracijske datoteke, ki se nahaja v \emph{etc/keyboards} podmapi projekta.
+
+    Postavitev sem v datoteki \emph{etc/keyboards/slovenian.conf} definiral kot:
+
+    \begin{verbatim}
+        <keyboard>
+
+        <row 1>
+        keys    = `~ 1! 2" 3\# 4$ 5% 6& 7/ 8( 9) 0= '? +*
+        fingers = 0  0  1  2   3  3  6  6  7  8  9  9  9
+        </row>
+
+        <row 2>
+        keys    = qQ wW eE rR tT zZ uU iI oO pP @! [!
+        fingers = 0  0  1  2  3  3  6  6  7  8  9  9
+        </row>
+
+        <row 3>
+        keys    = aA sS dD fF gG hH jJ kK lL \! ]! |!
+        fingers = 0  0  1  2  3  3  6  6  7  8  9  9
+        </row>
+
+        <row 4>
+        keys    = <> yY xX cC vV bB nN mM ,; .: -_
+        fingers = 0  0  1  2  3  3  6  6  7  8  9
+        </row>
+
+        </keyboard>
+    \end{verbatim}
+
+    \newpage
+    V datoteki lahko opazimo, da se znak "!" (klicaj) večkrat ponovi.
+    Ker so male in velike tiskane črke definirane na isti tipki, jih v datoteki ni potrebno definirati dvakrat, a sem to storil zaradi boljše preglednosti.
+    Pri šumnikih, ki smo jih zamenjali z drugimi znaki, bi zapis obeh črk zahteval dvakrat toliko znakov, česar si zaradi omejenega števila znakov, ki jih program prepozna, ne moremo privoščiti.
+    Zato te znake nadomesti klicaj, ki ne spremeni postavitve ostalih tipk, saj ga program v tem primeru prepozna kot veliko tiskano črko.
+    Vsaka tipka ima dve stanji, ki sta opisani v vrstici imenovani \emph{keys} in se v datoteki stikata (npr. \textbf{1!}).
+    V tem primeru to pomeni, da bo ob pritisku te tipke izpisana števka \emph{1}, če pa ob tipki pritisnemo še dvigalko (ang. Shift),
+    pa bo izpisan znak \emph{!}.
+
+    Števke v vrstici \emph{fingers} opišejo kateri prst bo pritisnil določeno tipko.
+    Prsti na roki so označeni s števkami od 0 do 9, pri čemer števka 0 predstavlja levi mezinec, števka 4 levi palec, števka 5 desni palec in števka 9 desni mezinec.
+    Razporeditev prstov po tipkah sledi priporočilom metode imenovane \emph{slepo tipkanje}, kjer je namen zapomniti si postavitev tipk na tipkovnici in
+    tipkati, ne da vmes gledamo na tipkovnico.
+
+    \begin{figure}[h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{resources/layout-slovenian-fingers.png}
+    \caption{Razporeditev prstov pri slovenski postavitvi}
+    \end{figure}
+
+    Na zgornji sliki barve označujejo, kateri prsti pritisnejo na katere tipke.
+    Vsaka barva ustreza enemu prstu roke, začenši z levim mezincem na svetlo modri barvi.
+
+    Ko zaženemo program le-ta izračuna težavnost za vnešeno postavitev in nam jo izpiše.
+    Spodaj je prikazan okrajšan izpis težavnosti zdajšnje slovenske QWERTZ postavitve.
+
+    \begin{verbatim}
+        Keyboard effort
+        -----------------------------
+        all                     2.910
+    \end{verbatim}
+
+    Ta izpis nam pove, da je težavnost postavitve, kot jo izračuna program enaka 2.910.
+    Po optimizaciji postavitve bomo to vrednost primerjali z novo, optimizirano vrednostjo
+    in tako izračunali, koliko boljša je nova postavitev.
+
+    \subsection{Rezultati optimizacije}\label{subsec:rezultati-optimizacije}
+
+    Po optimizaciji postavitve je program izpisal več postavitev, izbranih izmed 10.000 kombinacij.
+    Prvi izpis je tekstovna predstavitev vnešene postavitve (slovensko QWERTZ postavitev) in izgleda takole:
+
+    \begin{verbatim}
+        ------------------------------------------------------------
+        ` 1 2 3 4 5 6 7 8 9 0 ' +     ~ ! " # $ % & / ( ) = ? *
+        q w e r t z u i o p @ [       Q W E R T Z U I O P ! !
+        x s d f g h j k l \ ] |       X S D F G H J K L ! ! !
+        < y a c v b n m , . -         > Y A C V B N M ; : _
+        ------------------------------------------------------------
+    \end{verbatim}
+
+    V mislih je potrebno imeti, da so šumniki zaradi delovanja programa zamenjani z drugimi znaki, kot je navedeno v poglavju \ref{sumniki}.
+    Program je nato izpisal več drugih postavitev, a nas zanima predvsem zadnji izpis, ki prikaže najboljšo postavitev.
+    Le-ta je v okrajšani obliki prikazan spodaj. Število 9817 za besedo \emph{iter} (slo. ponovitev) nam pove,
+    kateri poskus oprimizacije je pridobil to težavnost.
+    V tem primeru smo pridobili optimalno postavitev po 9817 od 10000 poskusov.
+    Števili prikazani za besedo \emph{effort} (slov. težavnost) prikazujeta stanji pred in po zadnjem poskusu optimizacije,
+    tj. kolikšna je bila težavnost pred tem poskusom in kakšna je nova težavnost po tem poskusu.
+
+    \begin{verbatim}
+        ------------------------------------------------------------
+        iter   9817 effort 1.878665 -> 1.878233
+        ------------------------------------------------------------
+        ` 1 2 3 4 5 6 7 8 9 0 ' +     ~ ! " # $ % & / ( ) = ? *
+        h b p r d < c u k v @ [       H B P R D > C U K V ! !
+        n s i l j t a o e \ ] |       N S I L J T A O E ! ! !
+        w f q z x g y m , . -         W F Q Z X G Y M ; : _
+        ------------------------------------------------------------
+    \end{verbatim}
+
+        Če postavimo tipke na tipkovnico bi optimizirana postavitev izgledala takole:
+
+        \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.8\linewidth]{resources/layout-slovenian-optimised.png}
+        \caption{Optimizirana postavitev}
+        \end{figure}
+
+        Znaki v spodnjem delu tipke prikazujejo le-to tipko v osnovnem stanju, brez pritisnjene dvigalke (ang. Shift),
+        znaki v zgornjem delu pa le-to tipko skupaj s pritisnjeno dvigalko.
+        Tipke, ki vsebujejo le veliko tiskano črko, so prikazane le v drugem stanju, ne pa tudi v osnovnem stanju.
+
+    \subsection{Primerjava s slovensko QWERTZ postavitvijo}\label{subsec:primerjava-s-slovensko-qwertz-postavitvijo}
+
+    Vidimo lahko, da je nova postavitev po predstavljenem postopku ocenjen kot 35 \% boljša od standardne slovenske QWERTZ postavitve.
+    Prav tako opazimo, da je postavitev števk ostala enaka, postavitev črk pa se je popolnoma spremenila.
+
+    Mesta števk in večine znakov so pri obeh postavitvah enaka,
+    saj se v analiziranem korpusu ne pojavijo pogosto (Glej Možnosti za nadaljni razvoj in optimizacijo, poglavje \ref{subsec:večji-in-kvalitetnejši-korpus}).
+    Zanimivo je, da sta se simbola < in > premaknila na mesto, kjer je prej stala črka Z\@.
+
+\end{document}

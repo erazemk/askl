@@ -1,0 +1,33 @@
+\begin{document}
+
+  Ne glede na to, da je za nas tipkovnica vsakdanji predmet uporabe, sta njena struktura in delovanje veliko bolj zapletena.
+  Vsaka tipkovnica vsebuje svoj procesor, ki zazna kontakt ob pritisku tipke in le tega prevede v določeno kodo (ang. \emph{scancode}).
+  Vsaka tipka na tipkovnici je povezana z določeno kodo, ki jo tipkovnica prebere iz tabele kod (ang. \emph{character map}), shranjenih v njenem spominu.
+  Kodo nato pošlje v računalnik, ki jo prevede v črke, znake ali ukaze.
+  Vsak operacijski sistem ponuja različne načine prevajanja te kode v znake.
+  Čeprav tipkovnice v večini uporabljajo enake kode, pa se lahko te vseeno razlikujejo med različnimi izdelovalci.
+
+  \subsection{Linux operacijski sistem}\label{subsec:linux-operacijski-sistem}
+
+  \emph{Linux kernel} oziroma jedro je sestavni del Linux ekosistema.
+  Linux, kot ga pozna večina, je dejansko le skupina tako imenovanih distribucij,
+  ki temeljijo na Linux jedru.
+  Pritisk tipke deluje na naslednjih stopnjah~\cite{arch_wiki}:
+
+  \begin{enumerate}
+    \item tipkovnica v računalnik pošlje prej omenjeno kodo (ang. \emph{scancode}), ki računalniku pove, katera fizična tipka je bila pritisnjena,
+    \item Linux jedro prevede to kodo o tipki v kodo (ang. \emph{keycode}), ki jo lahko interpretirajo nastavitve tipkovnice - različne jezikovne nastavitve (npr. slovenska, angleška tipkovnica),
+    \item nastavljena postavitev prevede kodo v simbol (ang. \emph{keysym}), glede na to, kateri posebni gumbi so bili pritisnjeni (Shift, Caps Lock).
+  \end{enumerate}
+
+  \subsection{Windows operacijski sistem}\label{subsec:windows-operacijski-sistem}
+
+  Pri Windows operacijskih sistemih tipkovnice delujejo na naslednji način~\cite{win_keyboard}:
+
+  \begin{enumerate}
+    \item tipkovnica pošlje prej omenjeno kodo (ang. \emph{scancode}) v računalnik,
+    \item gonilnik za tipkovnice prevede to kodo v drugačno kodo (ang. \emph{virtual-key code}), ki je neodvisna od tipkovnice,
+    \item večina tipk se prevede v ASCII ekvivalentne simbole (0 - 9 in a - z), ostale pa v sistemske ukaze (F1 - F12 itd.).
+  \end{enumerate}
+
+\end{document}
